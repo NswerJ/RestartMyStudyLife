@@ -23,10 +23,10 @@ namespace RL.Core
 
     public class RMSL_PoolObj
     {
-        public Object poolingObj;
+        public GameObject poolingObj;
         public List<GameObject> poolList;
 
-        public RMSL_PoolObj(Object poolingObj, List<GameObject> poolList)
+        public RMSL_PoolObj(GameObject poolingObj, List<GameObject> poolList)
         {
             this.poolingObj = poolingObj;
             this.poolList = poolList;
