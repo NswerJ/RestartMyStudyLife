@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RMSL_BehaviorTree : MonoBehaviour
+public class RMSL_BehaviorTree : ScriptableObject
 {
     [HideInInspector] public bool isMemory;
 
