@@ -7,40 +7,131 @@ using static Unity.VisualScripting.Metadata;
 namespace RL.Dev.AI
 {
 
-    public class RMSL_SequenceNode : RMSL_ControlFlowNode
+    public enum RMSL_NodeState
     {
 
-        private int count;
+        Success,
+        Failure,
+        Running
 
-        public override void Init()
+    }
+
+    public abstract class RMSL_Node : ScriptableObject
+    {
+
+        [HideInInspector] public string guid;
+        [HideInInspector] public Rect editorPos;
+
+        protected RMSL_NodeState state;
+        protected bool started;
+
+        public RMSL_NodeState Execute()
         {
 
-            count = 0;
+            if (!started)
+            {
+
+                Enable();
+                started = true;
+
+            }
+
+            state = OnExecute();
+
+            if (state == RMSL_NodeState.Failure || state == RMSL_NodeState.Success)
+            {
+
+                Disable();
+                started = false;
+
+            }
+
+            return state;
 
         }
 
-        public override RMSL_NodeState Execute()
+        public virtual RMSL_Node Copy()
         {
 
-            var state = childrens[count].Execute();
-            count++;
-            if (state == RMSL_NodeState.Failure) return state;
+            return Instantiate(this);
 
-            if (count != childrens.Count) return RMSL_NodeState.Running;
+        }
+        public virtual void Init(Transform trm) { }
 
-            return RMSL_NodeState.Success;
+        public void Breaking()
+        {
+
+            Disable();
+            started = false;
+
+        }
+
+        protected virtual void Enable() { }
+        protected virtual void Disable() { }
+        protected abstract RMSL_NodeState OnExecute();
+
+
+    }
+
+    public abstract class RMSL_ActionNode : RMSL_Node { }
+
+    public abstract class RMSL_CompositeNode : RMSL_Node
+    {
+
+        [HideInInspector] public List<RMSL_Node> childrens = new List<RMSL_Node>();
+
+        public override RMSL_Node Copy()
+        {
+
+            var node = Instantiate(this);
+
+
+
+
+            node.childrens = new List<RMSL_Node>();
+
+            foreach (var ch in childrens)
+            {
+
+                node.childrens.Add(ch.Copy());
+
+            }
+
+            return node;
+
+        }
+
+        public override void Init(Transform trm)
+        {
+
+            childrens.ForEach(x => x.Init(trm));
 
         }
 
     }
 
-    public class RMSL_RootNode : RMSL_Node
+    public abstract class RMSL_DecoratorNode : RMSL_Node
     {
-        public RMSL_Node children;
-        public override RMSL_NodeState Execute()
+
+        [HideInInspector] public RMSL_Node children;
+
+        public override void Init(Transform trm)
         {
-            throw new System.NotImplementedException();
+
+            children.Init(trm);
+
         }
+
+        public override RMSL_Node Copy()
+        {
+
+            var node = Instantiate(this);
+            node.children = children.Copy();
+
+            return node;
+
+        }
+
     }
 
 }

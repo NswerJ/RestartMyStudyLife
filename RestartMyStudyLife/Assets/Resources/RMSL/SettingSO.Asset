@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e71ccc10e7dec24ea7ac5bf67d6ff66, type: 3}
   m_Name: SettingSO
   m_EditorClassIdentifier: 
-  usePooling: 0
-  poolingSO: {fileID: 0}
+  usePooling: 1
+  poolingSO: {fileID: 11400000, guid: 57313db34b8f4f64dafc412f457241a2, type: 2}

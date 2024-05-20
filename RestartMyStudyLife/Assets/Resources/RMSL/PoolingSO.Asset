@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83670f30e951e44c8ce63dc3ed7d6ce, type: 3}
   m_Name: PoolingSO
   m_EditorClassIdentifier: 
-  objPooling: []
+  objPooling:
+  - poolObjKey: TestObj
+    poolObj: {fileID: 8550582803990209493, guid: 65552bff321118948b3048af60aa6c66, type: 3}
+    poolObjCount: 5
+  - poolObjKey: A
+    poolObj: {fileID: 4489418477209003594, guid: 13776836142487742994b0bc307b70e5, type: 3}
+    poolObjCount: 5
   scenePooling: []

@@ -10,19 +10,20 @@ namespace RL.Core.Editors
 {
     public class RMSL_BaseNode : Node
     {
-        public GUID guid { get; set; }
+
+        public string guid { get; set; }
 
         public RMSL_BaseNode()
         {
 
-            guid = GUID.Generate();
+            guid = GUID.Generate().ToString();
 
         }
 
         public RMSL_BaseNode(string path) : base(path)
         {
 
-            guid = GUID.Generate();
+            guid = GUID.Generate().ToString();
 
         }
 
@@ -72,7 +73,7 @@ namespace RL.Core.Editors
             return port;
 
         }
+
     }
 
 }
-
