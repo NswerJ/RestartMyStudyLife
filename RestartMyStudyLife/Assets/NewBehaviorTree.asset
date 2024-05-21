@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
+--- !u!114 &-5653092597368428743
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,12 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5beb5c6281ddae544b3ac4c585ab97bf, type: 3}
-  m_Name: testBT
+  m_Script: {fileID: 11500000, guid: 16efe3fe08d45074a90807985db8ae22, type: 3}
+  m_Name: RMSL_RootNode
   m_EditorClassIdentifier: 
-  behaviorTree: {fileID: 1206095306120184571}
-  connectData: []
---- !u!114 &1206095306120184571
+  guid: 4a0855970d795d648a137fa1c8fb0483
+  editorPos:
+    serializedVersion: 2
+    x: 8
+    y: 8
+    width: 156
+    height: 83
+  children: {fileID: 0}
+--- !u!114 &-2001099806420634316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,9 +33,9 @@ MonoBehaviour:
   m_Name: AI
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 6663189204647087497}
-  rootNode: {fileID: 0}
---- !u!114 &6663189204647087497
+  - {fileID: -5653092597368428743}
+  rootNode: {fileID: -5653092597368428743}
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38,14 +44,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfa500b5e109e8340a5c9827f30d8386, type: 3}
-  m_Name: RMSL_RepeatNode
+  m_Script: {fileID: 11500000, guid: 5beb5c6281ddae544b3ac4c585ab97bf, type: 3}
+  m_Name: NewBehaviorTree
   m_EditorClassIdentifier: 
-  guid: f2faba18d5047c141a6ed079c65e058e
-  editorPos:
-    serializedVersion: 2
-    x: 251
-    y: 467
-    width: 234
-    height: 108
-  children: {fileID: 0}
+  behaviorTree: {fileID: -2001099806420634316}
+  connectData: []
