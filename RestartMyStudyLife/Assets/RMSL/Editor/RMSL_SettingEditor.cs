@@ -18,8 +18,8 @@ namespace RL.Core.Editors
 
             var window = GetWindow<RMSL_SettingEditor>();
             window.titleContent.text = "RMSL_Setting";
-            window.maxSize = new Vector2(300, 500);
-            window.minSize = new Vector2(300, 500);
+            window.maxSize = new Vector2(500, 500);
+            window.minSize = new Vector2(300, 400);
             window.SettingWindow();
             window.Show();
 
