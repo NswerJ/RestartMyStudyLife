@@ -12,11 +12,20 @@ namespace DS.Windows
     {
         public DSGraphView()
         {
+            AddManipulators();
             AddGridBackGround();
             AddStyles();
         }
 
-       
+
+        private void AddManipulators()
+        {
+            SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
+
+            this.AddManipulator(new ContentDragger());
+        }
+
+
 
         private void AddGridBackGround()
         {

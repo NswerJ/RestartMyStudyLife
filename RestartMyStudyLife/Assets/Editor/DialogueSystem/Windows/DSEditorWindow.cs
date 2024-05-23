@@ -1,6 +1,6 @@
 using System;
 using UnityEditor;
-using UnityEngine;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
 namespace DS.Windows
@@ -15,7 +15,20 @@ namespace DS.Windows
 
         private void OnEnable()
         {
+          
+
             AddGraphView();
+
+            AddStyles();
+        }
+
+       
+
+        private void AddStyles()
+        {
+            StyleSheet styleSheet = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/DSVariables.uss");
+
+            rootVisualElement.styleSheets.Add(styleSheet);
         }
 
         private void AddGraphView()
