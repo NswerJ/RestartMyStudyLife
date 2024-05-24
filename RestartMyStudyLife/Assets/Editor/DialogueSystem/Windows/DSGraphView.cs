@@ -1,3 +1,4 @@
+using DS.Elements;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,9 +15,20 @@ namespace DS.Windows
         {
             AddManipulators();
             AddGridBackGround();
+
+            CreateNode();
+
             AddStyles();
         }
 
+        private void CreateNode()
+        {
+            DSNode node = new DSNode();
+            node.Init();
+            node.Draw();
+
+            AddElement(node);   
+        }
 
         private void AddManipulators()
         {
