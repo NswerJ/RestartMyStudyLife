@@ -12,6 +12,8 @@ namespace RL.Core
 
         private static RMSL_PoolManager poolManager;
         private static RMSL_Core instance;
+        private static RMSL_DelayInvoke delayInvoke;
+        private static RMSL_Coroutine coroutineManager;
 
         public static RMSL_PoolManager PoolManager
         {
@@ -31,6 +33,24 @@ namespace RL.Core
                 Init();
                 return instance;
 
+            }
+        }
+        public static RMSL_DelayInvoke DelayInvoke
+        {
+
+            get
+            {
+                Init();
+                return delayInvoke;
+            }
+
+        }
+        public static RMSL_Coroutine CoroutineManager
+        {
+            get
+            {
+                Init();
+                return coroutineManager;
             }
         }
 

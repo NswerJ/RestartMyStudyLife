@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RL.Core;
+using System;
 
 namespace RL.Dev
 {
@@ -63,6 +64,49 @@ namespace RL.Dev
 
             return RMSL_Core.PoolManager.TakePool<T>(poolName, pos, rot, parent);
 
+        }
+
+        #endregion
+
+
+        #region DelayInvoke
+
+        public static void InvokeDelay(Action action, float delay)
+        {
+
+            RMSL_Core.DelayInvoke.InvokeDelay(action, delay);
+
+        }
+        public static void InvokeDelayRealTime(Action action, float delay)
+        {
+
+            RMSL_Core.DelayInvoke.InvokeDelayRealTime(action, delay);
+
+        }
+
+        #endregion
+
+        #region CustomCoroutine
+
+        public static Coroutine StartCoroutine(IEnumerator routine)
+        {
+            return RMSL_Core.Instance.StartCoroutine(routine);
+        }
+
+        public static void StopCoroutine(Coroutine coroutine)
+        {
+            RMSL_Core.Instance.StopCoroutine(coroutine);
+        }
+
+
+        public static void StopCoroutine(IEnumerator routine)
+        {
+            RMSL_Core.CoroutineManager.StopCustomCoroutine(routine);
+        }
+
+        public static void StopAllCoroutines()
+        {
+            RMSL_Core.CoroutineManager.StopAllCustomCoroutines();
         }
 
         #endregion
