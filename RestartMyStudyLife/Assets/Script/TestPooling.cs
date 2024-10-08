@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RL.Dev;
-using System;
 
 public class TestPooling : MonoBehaviour
 {
+    public Bullet Pobj; // Bullet 타입으로 변경
 
-    // Start is called before the first frame update
     void Start()
     {
+        // 초기 오브젝트 풀에 30개 미리 생성
+        ObjectPoolManager<Bullet>.Instance.Pool(Pobj, 30);
         StartCoroutine(poolTest());
     }
 
@@ -17,19 +17,15 @@ public class TestPooling : MonoBehaviour
     {
         while (true)
         {
-            var obj = RMSL.TakePool("TestObj", Vector3.zero, Quaternion.identity, transform);
+            // 1초마다 풀에서 오브젝트 꺼내기
             yield return new WaitForSeconds(1f);
-            RMSL.InsertPool(obj);
+            Bullet obj = ObjectPoolManager<Bullet>.Instance.PopPool(Pobj, transform.position);
+
+            // 오브젝트 사용: 여기에 사용 로직을 넣어줘도 됨 (예: 이동, 공격 등)
+
+            // 1초 뒤 오브젝트 다시 풀에 반환
             yield return new WaitForSeconds(1f);
+            ObjectPoolManager<Bullet>.Instance.ReturnToPool(obj);
         }
-    }
-
-
-    void Update()
-    {
-
-
-
-
     }
 }

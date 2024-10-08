@@ -16,28 +16,36 @@ namespace DS.Windows
             AddManipulators();
             AddGridBackGround();
 
-            CreateNode();
-
             AddStyles();
         }
 
-        private void CreateNode()
-        {
-            DSNode node = new DSNode();
-            node.Init();
-            node.Draw();
-
-            AddElement(node);   
-        }
+        
 
         private void AddManipulators()
         {
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
 
+            this.AddManipulator(CreateNodeContextualMenu());
+
             this.AddManipulator(new ContentDragger());
         }
 
+        private IManipulator CreateNodeContextualMenu()
+        {
+            ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
+                menuEvent => menuEvent.menu.AppendAction("Add Node", actionEvent => AddElement(CreateNode()))
+                );
+            return contextualMenuManipulator;
+        }
 
+        private DSNode CreateNode()
+        {
+            DSNode node = new DSNode();
+            node.Init();
+            node.Draw();
+
+            return node;
+        }
 
         private void AddGridBackGround()
         {
